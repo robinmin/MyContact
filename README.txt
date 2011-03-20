@@ -1,9 +1,7 @@
 READ ME
 -------------------------------------------------------------------------------
-2011-01-28
-1,集成最新版Smarty引擎（3.05）
-2,集成Ext JS(3.31);
-
 2011-03-20
-1,集成CI(2.0.1)+apache mod_rewrite模块(Vittual Host模式);
-2,移植cli.php,以便于在命令行运行CI程序
+1,Integrted Codeigniter(2.0.1)+apache mod_rewrite module(by vittual host mode);
+2,Add cli.php to enabke to run the programe on command line;
+3,Integrarted with Ext JS(3.3.1);
+4,Integrated with Smarty Engine(3.05);
