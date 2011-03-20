@@ -1,14 +1,13 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-
-class Smartytest extends Controller {
+class Smartytest extends CI_Controller {
 
     public function __construct()
     {
         parent::__construct();
         
-        // Load the Smarty Parser library. Usually you would autoload this library instead.
-        $this->load->library('smartyp');
+        // Ideally you would autoload the parser
+        $this->load->library('parser');
     }
 
     public function index()
@@ -18,7 +17,7 @@ class Smartytest extends Controller {
         $data['body']  = "This is body text to show that the Smarty Parser works!";
         
         // Load the template from the views directory
-        $this->load->view("smartytest", $data);
+        $this->parser->parse("smartytest.tpl", $data);
     }
     
     /**
@@ -32,7 +31,7 @@ class Smartytest extends Controller {
         $data['body']  = "This is body text to show that Smarty 3 template inheritance works with Smarty Parser.";
         
         // Load the template from the views directory
-        $this->load->view("inheritancetest", $data);
+        $this->parser->parse("inheritancetest.tpl", $data);
         
     }
 

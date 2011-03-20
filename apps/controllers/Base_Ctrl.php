@@ -34,6 +34,10 @@ class Base_Ctrl extends CI_Controller {
 	 */
 	public function __construct() {
 		parent::__construct ();
+        
+        // Ideally we need to autoload the parser
+        $this->load->library('parser');
+        
 		$this->loadCommonInfo();
 	}
 
@@ -47,8 +51,9 @@ class Base_Ctrl extends CI_Controller {
 	 * @return none
 	 */
 	protected function loadTpl($template, $data = null, $return = FALSE) {
-		$this->load->library('smartyp');
-		return $this->load->view($this->router->fetch_class().'/'.$template, empty($data)?$this->m_data:$data, $return);
+//		$this->load->library('smartyp');
+//		return $this->load->view($this->router->fetch_class().'/'.$template, empty($data)?$this->m_data:$data, $return);
+		return $this->parser->parse($this->router->fetch_class().'/'.$template, empty($data)?$this->m_data:$data, $return);
 	}
 	
 	/**
@@ -61,8 +66,9 @@ class Base_Ctrl extends CI_Controller {
 	 * @return none
 	 */
 	protected function loadAll($data = null, $return = FALSE) {
-		$this->load->library('smartyp');
-		return $this->load->view('full_page.tpl', empty($data)?$this->m_data:$data, $return);
+//		$this->load->library('smartyp');
+//		return $this->load->view('full_page.tpl', empty($data)?$this->m_data:$data, $return);
+		return $this->parser->parse('full_page.tpl', empty($data)?$this->m_data:$data, $return);
 	}
 	
 	/**
@@ -75,8 +81,9 @@ class Base_Ctrl extends CI_Controller {
 	 * @return none
 	 */
 	protected function loadFrame($data = null, $return = FALSE) {
-		$this->load->library('smartyp');
-		return $this->load->view('frame_page.tpl', empty($data)?$this->m_data:$data, $return);
+//		$this->load->library('smartyp');
+//		return $this->load->view('frame_page.tpl', empty($data)?$this->m_data:$data, $return);
+		return $this->parser->parse('frame_page.tpl', empty($data)?$this->m_data:$data, $return);
 	}
 
 	/**
