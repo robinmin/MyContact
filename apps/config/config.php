@@ -219,7 +219,7 @@ $config['log_date_format'] = 'Y-m-d H:i:s';
 | system/cache/ folder.  Use a full server path with trailing slash.
 |
 */
-$config['cache_path'] = '';
+$config['cache_path'] = APPPATH.'cache/';
 
 /*
 |--------------------------------------------------------------------------
@@ -371,6 +371,7 @@ $config['template_dir'] = APPPATH."views/";                     // Where your te
 $config['compile_dir']  = APPPATH."cache/smarty/compiled";     	// Where templates are compiled
 $config['cache_dir']    = APPPATH."cache/smarty/cached";       	// Where templates are cached
 $config['config_dir']   = APPPATH."third_party/Smarty/configs"; // Where Smarty configs are located
+$config['template_ext']   = APPPATH.'php'; 						// Default extension of templates if one isn't supplied
 
 $config['sys_version']	= '0.0.0.1';
 $config['sys_ext_ver']	= '3.3.1';
