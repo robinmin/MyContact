@@ -1,6 +1,11 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /*
+| debug_mode : system running mode
+*/
+$config['debug_mode']	= true;
+
+/*
 |--------------------------------------------------------------------------
 | Base Site URL
 |--------------------------------------------------------------------------
@@ -14,7 +19,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= '';
+$config['base_url']	= array_key_exists('HTTP_HOST',$_SERVER)?
+                        'http://'.$_SERVER['HTTP_HOST'].'/':'';
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +32,7 @@ $config['base_url']	= '';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -180,7 +186,7 @@ $config['directory_trigger']	= 'd'; // experimental not currently in use
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = ($config['debug_mode'] === true)?4:2;
 
 /*
 |--------------------------------------------------------------------------
@@ -191,7 +197,7 @@ $config['log_threshold'] = 0;
 | application/logs/ folder. Use a full server path with trailing slash.
 |
 */
-$config['log_path'] = '';
+$config['log_path'] = APPPATH.'logs/';
 
 /*
 |--------------------------------------------------------------------------
@@ -265,9 +271,9 @@ $config['sess_time_to_update']	= 300;
 | 'cookie_secure' =  Cookies will only be set if a secure HTTPS connection exists.
 |
 */
-$config['cookie_prefix']	= "";
-$config['cookie_domain']	= "";
-$config['cookie_path']		= "/";
+$config['cookie_prefix']	= '';
+$config['cookie_domain']	= '';
+$config['cookie_path']		= '/';
 $config['cookie_secure']	= FALSE;
 
 /*
@@ -356,6 +362,40 @@ $config['rewrite_short_tags'] = FALSE;
 |
 */
 $config['proxy_ips'] = '';
+
+/******************************************************************************
+ Default settings for template parser
+******************************************************************************/
+//smarty configuration
+$config['template_dir'] = APPPATH."views/";                     // Where your templates are to be loaded from
+$config['compile_dir']  = APPPATH."cache/smarty/compiled";     	// Where templates are compiled
+$config['cache_dir']    = APPPATH."cache/smarty/cached";       	// Where templates are cached
+$config['config_dir']   = APPPATH."third_party/Smarty/configs"; // Where Smarty configs are located
+
+$config['sys_version']	= '0.0.0.1';
+$config['sys_ext_ver']	= '3.3.1';
+$config['sys_asset']	= 'resource/';
+if($config['debug_mode']){
+	$config['sys_js']		= array(
+		$config['sys_asset'].'js/ext-'.$config['sys_ext_ver'].'/ext-base-debug.js',
+		$config['sys_asset'].'js/ext-'.$config['sys_ext_ver'].'/ext-all-debug.js',
+		$config['sys_asset'].'js/SysInit.js'
+	);
+}else{
+	$config['sys_js']		= array(
+		$config['sys_asset'].'js/ext-'.$config['sys_ext_ver'].'/ext-base.js',
+		$config['sys_asset'].'js/ext-'.$config['sys_ext_ver'].'/ext-all.js',
+		$config['sys_asset'].'js/SysInit.js'
+	);
+}
+$config['sys_css']		= array(
+	$config['sys_asset'].'js/ext-'.$config['sys_ext_ver'].'/resources/css/ext-all.css',
+	$config['sys_asset'].'js/ext-'.$config['sys_ext_ver'].'/resources/css/xtheme-blue.css'
+);
+$config['sys_title']	= 'My Contact';
+
+
+
 
 
 /* End of file config.php */

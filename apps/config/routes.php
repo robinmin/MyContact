@@ -38,8 +38,9 @@
 |
 */
 
-$route['default_controller'] = "welcome";
-$route['404_override'] = '';
+$route['default_controller']	= 'Sys_Ctrl';
+$route['scaffolding_trigger']	= '';
+$route['404_override']			= '';
 
 
 /* End of file routes.php */
