@@ -1,5 +1,5 @@
 <div id="x-desktop">
-    <a href="#" style="margin:5px; float:right;"><img src="{$sys_asset}img/powered.png" /></a>
+    <a style="margin:5px; float:right;"><img src="{$sys_asset}img/powered.png" /></a>
 
     <dl id="x-shortcuts">
         <dt id="grid-win-shortcut">

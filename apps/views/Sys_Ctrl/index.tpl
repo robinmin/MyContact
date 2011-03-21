@@ -12,7 +12,7 @@
 	<div id="middle"> 
 		<div id="inner">
 			<ul style="list-style-type:none;">
-				<li><a href="{$url_prefix}Sys_Ctrl/desktop/" title="myContact"><img alt="myContact" src="{$sys_asset}icon2/contact96.png" /></a></li>
+				<li><a href="{$url_prefix}MyContact/Sys_Ctrl/desktop/" title="myContact"><img alt="myContact" src="{$sys_asset}icon2/contact96.png" /></a></li>
 				<li><a href="{$url_prefix}wordpress/" title="Blog"><span align="center"><img alt="Blog" src="{$sys_asset}icon2/blog96.png" /></li>
 				<li><a href="{$url_prefix}Survey/" title="Survey"><span align="center"><img alt="Survey" src="{$sys_asset}icon2/survey96.png" /></li>
 				<li><a href="{$url_prefix}gallery/" title="Gallery"><span align="center"><img alt="Gallery" src="{$sys_asset}icon2/gallery96.png" /></li>

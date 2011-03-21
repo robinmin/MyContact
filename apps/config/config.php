@@ -20,7 +20,7 @@ $config['debug_mode']	= true;
 |
 */
 $config['base_url']	= array_key_exists('HTTP_HOST',$_SERVER)?
-                        'http://'.$_SERVER['HTTP_HOST'].'/':'';
+                        'http://'.$_SERVER['HTTP_HOST'].'/MyContact/':'';
 
 /*
 |--------------------------------------------------------------------------

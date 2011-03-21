@@ -38,8 +38,7 @@ class Sys_Ctrl extends Base_Ctrl{
 	 * @return  none
 	 */
 	public function index(){
-		//$this->m_data['url_prefix']	= 'http://www.bigbings.net/';
-		$this->m_data['url_prefix']	= '';
+		$this->m_data['url_prefix']	= '../';
 		//output
 		$this->m_data['this_body']	= $this->loadTpl(__FUNCTION__.'.tpl',null,true);
 		$this->loadAll();
