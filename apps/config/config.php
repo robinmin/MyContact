@@ -391,7 +391,8 @@ if($config['debug_mode']){
 }
 $config['sys_css']		= array(
 	$config['sys_asset'].'js/ext-'.$config['sys_ext_ver'].'/resources/css/ext-all.css',
-	$config['sys_asset'].'js/ext-'.$config['sys_ext_ver'].'/resources/css/xtheme-blue.css'
+	$config['sys_asset'].'js/ext-'.$config['sys_ext_ver'].'/resources/css/xtheme-blue.css',
+	$config['sys_asset'].'js/ext-'.$config['sys_ext_ver'].'/resources/css/global.css'
 );
 $config['sys_title']	= 'My Contact';
 

@@ -48,6 +48,7 @@ class Base_DAO {
 	 * @return  none
 	 */
 	public function __construct($daoName = ''){
+		$this->CI = & get_instance ();
 	}
 	
 	/**
@@ -82,8 +83,7 @@ class Base_DAO {
 	}
 	
 	public function transBegin(){
-		$CI = & get_instance ();
-		$CI->db->trans_begin();
+		$this->CI->db->trans_begin();
 	}
 	
 	/**
@@ -96,12 +96,11 @@ class Base_DAO {
 	public function transCommit($bSucc = true){
 		
 		$bTran = true;
-		$CI = & get_instance ();
-		if (!$bSucc || ($CI->db->trans_status() === FALSE)) {
+		if (!$bSucc || ($this->CI->db->trans_status() === FALSE)) {
 			$bTran = false;
-		    $CI->db->trans_rollback();
+		    $this->CI->db->trans_rollback();
 		} else {
-		    $CI->db->trans_commit();
+		    $this->CI->db->trans_commit();
 		}
 		
 		return $bTran;
@@ -115,8 +114,7 @@ class Base_DAO {
 	 * @return boolean table exit or not
 	 */
 	public function checkTable($tableName){
-		$CI = & get_instance ();
-		return $CI->db->table_exists($tableName);
+		return $this->CI->db->table_exists($tableName);
 	}
 
 	/**
@@ -152,5 +150,66 @@ class Base_DAO {
 		}else{
 			return true;
 		}
+	}
+	
+	/**
+	 * getItems : get items from sys_dict
+	 *
+	 * @param mixed $category	category
+	 * @param mixed $key		key value
+	 * @param mixed $value		value
+	 * @param mixed $cond 		more conditions, default by null
+	 * @access public
+	 * @return mixed
+	 */
+	public function getItems($category, $key = null, $value = null, $cond = null) {
+		$strWhere = '';
+		if( is_array($category) ){
+			$strWhere .= "cat.C_VALUE in('".implode("','",$category)."')";
+		}else if( is_string($category) && !empty($category) ){
+			$strWhere .= "cat.C_VALUE = '".$category."'";
+		}else if( is_int($category) ){
+			$strWhere .= "cat.C_VALUE = ".$category;
+		}
+		
+		if( is_array($key) ){
+			if(strlen($strWhere)>0)	$strWhere .= ' and ';
+			$strWhere .= "dt.N_KEY in(".implode(",",$key).")";
+		}else if( !empty($key) ){
+			if(strlen($strWhere)>0)	$strWhere .= ' and ';
+			$strWhere .= "dt.N_KEY = ".$key;
+		}
+		
+		if( is_array($value) ){
+			if(strlen($strWhere)>0)	$strWhere .= ' and ';
+			$strWhere .= "dt.C_VALUE in('".implode("','",$category)."')";
+		}else if( !empty($value) ){
+			if(strlen($strWhere)>0)	$strWhere .= ' and ';
+			$strWhere .= "dt.C_VALUE = '".$value."'";
+		}
+		
+		if(strlen($strWhere)>0)	$strWhere .= ' and ';
+		if( is_array($cond) ){
+			$strWhere .= implode(' and ',$cond);
+		}else if( is_string($cond) && !empty($cond) ){
+			$strWhere .= $cond;
+		}else{
+			$strWhere .= 'dt.N_INUSE = 1';
+		}
+		
+		if(strlen($strWhere)<=0)	$strWhere = '1=1';
+		$strSQL =<<<ENDSQL
+select
+	ifnull(cat.C_VALUE,'') as C_CATEGORY,
+	dt.N_KEY,
+	dt.C_VALUE
+from SYS_DICT as dt
+left join(
+	select N_KEY,C_VALUE,N_ORDER from SYS_DICT where N_INUSE=1 and N_CAT=0
+) as cat on cat.N_KEY = dt.N_CAT
+where $strWhere
+order by cat.N_ORDER,dt.N_ORDER,dt.N_KEY
+ENDSQL;
+		return $this->executeReadSql($strSQL);
 	}
 }

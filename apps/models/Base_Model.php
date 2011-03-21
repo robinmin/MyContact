@@ -52,7 +52,7 @@ class Base_Model extends CI_Model {
 	 * @access public
 	 * @return  none
 	 */
-    function __destruct() {
+    public function __destruct() {
         foreach($this->m_arrDAOs as $alias => &$dao){
         	unset($dao);
         }
@@ -104,7 +104,23 @@ class Base_Model extends CI_Model {
 		if( empty($dao) || isset($this->m_arrDAOs[$alias]) ) return false;
 		
 		$this->m_arrDAOs[$alias] = strval($dao);
-		@require_once(APPPATH.'modules/dao/'.$dao.EXT);
+		@require_once(APPPATH.'models/dao/'.$dao.EXT);
 		return true;
+	}
+	
+	/**
+	 * getItems : get items from sys_dict
+	 *
+	 * @param mixed $category	category
+	 * @param mixed $key		key value
+	 * @param mixed $value		value
+	 * @param mixed $cond 		more conditions, default by null
+	 * @access public
+	 * @return mixed
+	 */
+	public function getItems($category, $key = null, $value = null, $cond = null) {
+		$this->addDAO('Base_DAO');
+		$dao = $this->getDAOInstance('Base_DAO');
+		return $dao->getItems($category, $key, $value, $cond);
 	}
 }

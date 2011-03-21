@@ -10,6 +10,17 @@ class Welcome extends Base_Ctrl {
 	
 	function index()
 	{
+		$this->load->model('Base_Model');
+		$dt = $this->Base_Model->getItems(null,null,null,null);
+		if(count($dt)>0){
+			$this->load->library('table');
+			$this->table->set_heading(array_keys($dt[0]));
+			$this->table->set_template(array(
+				'table_open'          => '<table border="1" cellpadding="1" cellspacing="1" class="table_blue_border">'
+			));
+			$this->m_data['this_body'] = $this->table->generate($dt);
+			$this->table->clear();
+		}
 		$this->loadAll();
 		//$this->load->view('welcome_message');
 //		echo '<pre>';
