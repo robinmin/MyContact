@@ -57,10 +57,21 @@ Ext.extend(Ext.ux.TaskBar, Ext.util.Observable, {
             region:'center'
         });
 
+        this.trayPanel = new Ext.BoxComponent({
+                region	: 'east',
+                el		: 'ux-taskbar-tray',
+                id		: 'TaskTray',
+                width	: 80,
+                split	: true,
+                border	: true,
+                html	: '2010-06-14'//,
+   //             height	: 32
+            });
+       	
         var container = new Ext.ux.TaskBarContainer({
             el: 'ux-taskbar',
             layout: 'border',
-            items: [sbBox,this.tbPanel]
+            items: [sbBox,this.tbPanel,this.trayPanel]
         });
 
         return this;

@@ -391,6 +391,15 @@ html, body {
 	position:relative;
 }
 
+#ux-taskbar-tray {
+	background:#FFFFFF url( ../img/taskbar/black/taskbuttons-panel-bg.gif ) repeat-x left top;
+	padding-top:0;
+	color:white;
+	vertical-align:middle;
+	text-align:center;
+	padding : 6pt 2pt 0pt 0pt;
+}
+
 .ux-taskbuttons-strip-wrap {
 	/* overflow:hidden;
 	position:relative;
@@ -650,11 +659,11 @@ td.ux-taskButtons-edge {
     width:48px;
     height:48px;
     background-image: url(../img/grid48x48.png);
-    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/grid48x48.png', sizingMethod='scale');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/grid48x48.png', sizingMethod='scale');
 }
 #acc-win-shortcut img {
     width:48px;
     height:48px;
     background-image: url(../img/im48x48.png);
-    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/im48x48.png', sizingMethod='scale');
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/im48x48.png', sizingMethod='scale');
 }

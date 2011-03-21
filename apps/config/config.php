@@ -375,6 +375,10 @@ $config['template_ext']   = APPPATH.'php'; 						// Default extension of templat
 
 $config['sys_version']	= '0.0.0.1';
 $config['sys_ext_ver']	= '3.3.1';
+
+$config['out_of_service']		= false;
+$config['out_of_service_url'] 	= 'welcome/index';
+
 $config['sys_asset']	= 'resource/';
 if($config['debug_mode']){
 	$config['sys_js']		= array(

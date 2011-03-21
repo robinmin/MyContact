@@ -64,7 +64,19 @@ $autoload['libraries'] = array('database');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url');
+$autoload['helper'] = array('common','url');
+
+
+/*
+| -------------------------------------------------------------------
+|  Auto-load Plugins
+| -------------------------------------------------------------------
+| Prototype:
+|
+|	$autoload['plugin'] = array('captcha', 'js_calendar');
+*/
+
+$autoload['plugin'] = array();
 
 
 /*
